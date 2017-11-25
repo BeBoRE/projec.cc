@@ -18,7 +18,6 @@ if(empty($_SESSION['userid'])){
 
     if($result['password'] == $password){
       header("Content-Type: application/json");
-      //echo 'succesful';
       $_SESSION['userid'] = $result['id'];
       echo 'succesful';
     }
