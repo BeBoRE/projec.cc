@@ -14,9 +14,9 @@ $stmt->bind_param("s",$username);
 
 if(empty($_SESSION['userid'])){
     if(!empty($_POST['username']) && !empty($_POST['password'])){
-    $username = $_POST['username'];
+    $username = trim($_POST['username']);
     //Password to SHA256
-    $password = hash("SHA256",$_POST['password']);
+    $password = hash("SHA256",trim($_POST['password']));
 
     $stmt->execute();
     $result = $stmt->get_result()->fetch_assoc();
