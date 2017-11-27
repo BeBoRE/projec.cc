@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-header('Content-Type: application/json');
+header('Content-Type: text/plain');
 require $_SERVER['DOCUMENT_ROOT'].'\db.php';
 
 $stmt = $db->prepare("SELECT * FROM users WHERE userName=? LIMIT 1");
@@ -16,17 +16,20 @@ if(empty($_SESSION['userid'])){
     $stmt->execute();
     $result = $stmt->get_result()->fetch_assoc();
 
-    if($result['password'] == $password){
-      header("Content-Type: application/json");
-      $_SESSION['userid'] = $result['id'];
-      echo 'loginsuccesful';
+    if(!empty($result)){
+      if($result['password'] == $password){
+        $_SESSION['userid'] = $result['id'];
+        echo 'loginsuccesful';
+      }
+      else{
+        echo 'incorrectcreditials';
+      }
     }
     else{
-      echo 'incorrectcreditials';
+      echo "usernamenotexist";
     }
   }
   else{
-    header('Content-Type: application/json');
     echo 'nopassuserset';
   }
 }
