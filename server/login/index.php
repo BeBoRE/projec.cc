@@ -1,5 +1,10 @@
 <?php
 
+//Log-in succesful ->                                loginsuccesful
+//Incorrect creditials ->                            incorrectcreditials
+//If password or username is not included in POST -> nopassuserset
+//If user is already logged on ->                    alreadyloggedon
+
 session_start();
 header('Content-Type: text/plain');
 require $_SERVER['DOCUMENT_ROOT'].'\db.php';
