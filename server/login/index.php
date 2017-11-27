@@ -1,9 +1,9 @@
 <?php
 
-//Log-in succesful ->                                loginsuccesful
-//Incorrect creditials ->                            incorrectcreditials
-//If password or username is not included in POST -> nopassuserset
-//If user is already logged on ->                    alreadyloggedon
+//alreadyloggedon     <- If user is already logged on
+//nopassuserset       <- If password or username is not included in POST
+//incorrectcreditials <- Incorrect creditials
+//loginsuccesful      <- Log-in succesful
 
 session_start();
 header('Content-Type: text/plain');
@@ -41,5 +41,4 @@ if(empty($_SESSION['userid'])){
 else{
   echo 'alreadyloggedon';
 }
-
 ?>

@@ -1,5 +1,10 @@
 <?php
 
+//nopassuserset   <- No password or username given
+//unsafechar      <- Character given not between 33 and 126 (All printable characters except space and DEL)
+//accalreadyexist <- If username already exists in database
+//accregsuccesful <- Account inserted into database
+
 session_start();
 header('Content-Type: text/plain');
 require $_SERVER['DOCUMENT_ROOT'].'\db.php';
