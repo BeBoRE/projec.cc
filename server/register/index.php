@@ -26,7 +26,10 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
     if(!$alreadyexist->get_result()->fetch_assoc()){
       $password = hash("SHA256",$password);
       $insert->execute();
-      echo "accregsuccesful";
+      $alreadyexist->execute();
+      $result = $alreadyexist->get_result()->fetch_assoc();
+      $_SESSION['userid'] = $result['id'];
+      echo "accregsuccesful" . $_SESSION['userid'];
     }
     else{
       echo "accalreadyexist";
