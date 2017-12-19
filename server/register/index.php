@@ -24,12 +24,17 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
   if(!preg_match("/[^\x21-\x7E]/",$password.$username)){
     $alreadyexist->execute();
     if(!$alreadyexist->get_result()->fetch_assoc()){
+
+      //insert account into database
       $password = hash("SHA256",$password);
       $insert->execute();
+
+      //logon user
       $alreadyexist->execute();
       $result = $alreadyexist->get_result()->fetch_assoc();
       $_SESSION['userid'] = $result['id'];
-      echo "accregsuccesful" . $_SESSION['userid'];
+
+      echo "accregsuccesful";
     }
     else{
       echo "accalreadyexist";
