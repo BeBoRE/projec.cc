@@ -2,8 +2,9 @@
 
 //alreadyloggedon     <- If user is already logged on
 //nopassuserset       <- If password or username is not included in POST
-//incorrectcreditials <- Incorrect creditials
+//incorrectcredentials <- Incorrect creditials
 //loginsuccesful      <- Log-in succesful
+//usernamenotexist    <- Given username doesn't exist in database
 
 session_start();
 header('Content-Type: text/plain');
@@ -27,7 +28,7 @@ if(empty($_SESSION['userid'])){
         echo 'loginsuccesful';
       }
       else{
-        echo 'incorrectcreditials';
+        echo 'incorrectcredentials';
       }
     }
     else{
