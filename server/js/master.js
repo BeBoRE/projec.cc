@@ -18,6 +18,27 @@ reguserfield = geti('reguserfield')
 regpassfield = geti('regpassfield')
 valregpassfield = geti('validationregpassfield')
 
+function httpusernameexist(user){
+  xhttp = new XMLHttpRequest()
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      if(this.responseText == 1){
+        reguserfield.classList.add("warn")
+        gotologinbut.classList.add('warn')
+        reguserfield.classList.remove('correct')
+      }
+      else{
+        gotologinbut.classList.remove('warn')
+        reguserfield.classList.remove("warn")
+        reguserfield.classList.add('correct')
+      }
+    }
+  }
+  xhttp.open("POST", "/usernameexist/", true)
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+  xhttp.send("username=" + user)
+}
+
 function httplogin(user,pass){
   xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function(){
@@ -103,13 +124,26 @@ userfield.onkeypress = function(event) {
   }
 }
 
-reguserfield.onkeypress = function(event) {
-  if(event.target.value.match(/[^\x21-\x7E]/) || event.key.match(/[^\x21-\x7E]/)){
-    event.target.classList.add('error')
+reguserfield.oninput = function(event){
+  if(event.target.value){
+    if(event.target.value.match(/[^\x21-\x7E]/)){
+      event.target.classList.add('error')
+      event.target.classList.remove('warn')
+      event.target.classList.remove('correct')
+    }
+    else{
+      event.target.classList.remove('error')
+      httpusernameexist(event.target.value)
+    }
   }
   else{
+    event.target.classList.remove('warn')
+    event.target.classList.remove('correct')
     event.target.classList.remove('error')
   }
+}
+
+reguserfield.onkeypress = function(event) {
   if (event.key == "Enter"){
     if(event.target.value.match(/[^\x21-\x7E]/)){
       event.target.classList.add('error')
@@ -167,8 +201,8 @@ regpassfield.onkeypress = function(event) {
   }
 }
 
-valregpassfield.onkeyup = function(event) {
-  if(valregpassfield.value == regpassfield.value && valregpassfield.value && regpassfield.value){
+valregpassfield.onkeypress = function(event) {
+  if((valregpassfield.value + event.key) == regpassfield.value && valregpassfield.value && regpassfield.value){
     valregpassfield.classList.add('correct')
     regpassfield.classList.add('correct')
   }
@@ -184,9 +218,9 @@ valregpassfield.onkeyup = function(event) {
     else{
       if(valregpassfield.value == regpassfield.value){
         console.log("initiate httpsignup")
-        httpreg(reguserfield.value,regpassfield.value)
         valregpassfield.classList.add('correct')
         regpassfield.classList.add('correct')
+        httpreg(reguserfield.value,regpassfield.value)
       }
       else{
         valregpassfield.classList.add('error')
@@ -207,16 +241,27 @@ function submitloginform(){
   httplogin(userfield.value,passfield.value)
 }
 
+function submitregform() {
+  httpreg(reguserfield.value,regpassfield.value)
+}
+
 function checkHash(){
   if (window.location.hash == "#register"){
     loginregscreen.setAttribute("screen","register")
+    document.title = "Registration - Projec.cc"
+    return "changing to registration"
   }
   if (window.location.hash == "#login"){
     loginregscreen.setAttribute("screen","login")
+    document.title = "Welcome to Projec.cc"
+    return "changing to login"
   }
 }
 
-checkHash()
+
+window.onload = function(){
+  checkHash()
+}
 
 window.onhashchange = function(){
   checkHash()

@@ -34,7 +34,7 @@
             <input type="password" id="regpassfield" placeholder="Password" spellcheck="false" autocapitalize="none" autocorrect="off" autocomplete="off">
             <input type="password" id="validationregpassfield" placeholder="Validate password" spellcheck="false" autocapitalize="none" autocorrect="off" autocomplete="off">
             <div style="min-height:30px"></div>
-            <a href="" class="inherit"><button class="whitetransparent">Create</button></a>
+            <a onclick="submitregform()" class="inherit"><button class="whitetransparent">Create</button></a>
           </div>
           <div class="w300 footer">
             <h1 class="defidertext">Or</h1>
