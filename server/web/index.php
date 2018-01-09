@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Login - Projec.cc</title>
-    <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="/css/master.min.css">
     <link rel="stylesheet" href="/resources/icons/fontawesome-all.min.css">
   </head>
   <body>
@@ -29,7 +29,7 @@
         </div>
         <div id="regsection">
           <div class="w300 loginform">
-            <h1 style="margin:50px 0;">Create an account</h1>
+            <h1 style="margin:25px 0;padding:0 15px;">Create an account</h1>
             <input type="text" id="reguserfield" placeholder="Username" spellcheck="false" autocapitalize="none" autocorrect="off" autocomplete="off">
             <input type="password" id="regpassfield" placeholder="Password" spellcheck="false" autocapitalize="none" autocorrect="off" autocomplete="off">
             <input type="password" id="validationregpassfield" placeholder="Validate password" spellcheck="false" autocapitalize="none" autocorrect="off" autocomplete="off">
@@ -53,6 +53,6 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="/js/master.js"></script>
+    <script type="text/javascript" src="/js/master.min.js"></script>
   </body>
 </html>
