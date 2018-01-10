@@ -27,7 +27,7 @@
 }
 
 html, body{
-  font-family: roboto !important;
+  font-family: roboto;
   height:100%;
   width:100%;
 }
@@ -84,6 +84,7 @@ h1, h2, h3, h4, h5, h6{
   right:0;
   color:#FFF;
   z-index: 2000;
+  overflow: hidden;
 }
 
   #loginsection{
@@ -219,29 +220,67 @@ a.inherit{
   color:inherit;
 }
 
-#posts{
+#feed{
   overflow-y: auto;
-  min-height:calc(100% - 75px);
-  min-width:100%;
-  padding-top:75px;
+  height:calc(100% - 65px);
+  margin-top:65px;
 }
 
 #header{
-  height:75px;
+  height:65px;
   width:100%;
-  background: linear-gradient(to bottom, #64FFDA, #64eeee);
+  background:#64FFDA;
   position:fixed;
   z-index: 1000;
 }
 
-#posts div.post{
-  padding:20px;
+#feed div.postwrapper{
+  padding:10px 20px 0;
+}
+
+div.post{
+  border-bottom-width: 2px;
+  border-style: solid;
+  border-color: #0000001f;
 }
 
 div.post h3{
   opacity:0.87;
+  font-size: 1.7em;
+  margin: 7px 0;
 }
 
 div.post p{
   opacity:0.54;
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+div.userwrapper{
+  --size:50px;
+  margin: 10px 0;
+  position: relative;
+  height:50px;
+}
+
+div.userwrapper img{
+  height:var(--size);
+  width:var(--size);
+  border-radius: 1000px;
+  float:left;
+}
+
+div.userwrapper span{
+  vertical-align: top;
+  font-size: 1.3em;
+  font-weight: bold;
+  opacity:0.87;
+  top:calc(25px - 0.65em);
+  position: relative;
+  overflow: hidden;
+  max-width: calc(100% - 60px);
+  max-height:1.3em;
+  display:inline-block;
+  text-overflow: ellipsis;
+  padding:0 0 0 10px;
 }
