@@ -70,6 +70,19 @@ function httplogin(user,pass){
   xhttp.send("username=" + user + "&password=" + pass)
 }
 
+function httplogout(){
+  xhttp = new XMLHttpRequest()
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      loginregscreen.classList.remove('loggedin')
+      
+    }
+  }
+  xhttp.open("GET", "/logout/", true)
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+  xhttp.send()
+}
+
 function httpreg(user,pass){
   xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function(){
