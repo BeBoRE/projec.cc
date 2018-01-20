@@ -17,6 +17,7 @@ gotologinbut = geti('gotologinbut')
 reguserfield = geti('reguserfield')
 regpassfield = geti('regpassfield')
 valregpassfield = geti('validationregpassfield')
+feed = geti('feed')
 
 function httpusernameexist(user){
   xhttp = new XMLHttpRequest()
@@ -48,6 +49,7 @@ function httplogin(user,pass){
         case "loginsuccesful":
         case "alreadyloggedon":
           loginregscreen.classList.add('loggedin')
+          updatefeed()
           break
         case "incorrectcredentials":
           passfield.classList.add("error")
@@ -75,7 +77,12 @@ function httplogout(){
   xhttp.onreadystatechange = function(){
     if(this.readyState == 4 && this.status == 200){
       loginregscreen.classList.remove('loggedin')
-      
+      userfield.value = ''
+      passfield.value = ''
+      reguserfield.value = ''
+      regpassfield.value = ''
+      valregpassfield.value = ''
+      feed.innerHTML = ''
     }
   }
   xhttp.open("GET", "/logout/", true)
@@ -274,8 +281,36 @@ function checkHash(){
 
 window.onload = function(){
   checkHash()
+  updatefeed()
 }
 
 window.onhashchange = function(){
   checkHash()
+}
+
+function updatefeed(){
+  feed.classList.add('loading')
+
+  xhttp = new XMLHttpRequest()
+  xhttp.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+      response = JSON.parse(this.responseText)
+      console.log(response)
+
+      if(response['error']){
+        console.error(response['error'])
+      }
+      else{
+        setTimeout(function(){
+          feed.innerHTML = ''
+          response.forEach(function(item,index){
+            feed.innerHTML += '<div class="postwrapper"><div class="post"><h3>'+item['title']+'</h3><p>'+item['content']+'</p><div class="userwrapper"><img src="/resources/profilepicture/example.jpg" alt=""><span>'+item['userid']+'</span></div></div></div>'
+          })
+          feed.classList.remove('loading')
+        },250)
+      }
+    }
+  }
+  xhttp.open("GET", "/retrieveposts/", true)
+  xhttp.send()
 }
