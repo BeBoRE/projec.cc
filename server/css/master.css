@@ -228,6 +228,12 @@ a.inherit{
   overflow-y: auto;
   height:calc(100% - 65px);
   margin-top:65px;
+  opacity:1;
+  transition: all 250ms ease-in-out;
+}
+
+#feed.loading{
+  opacity:0;
 }
 
 #header{
@@ -261,6 +267,22 @@ a.inherit{
   width:150px;
   height: 100%;
   float:left;
+  background-color: #0000;
+  transition: all 200ms ease-in-out;
+}
+
+#header .Logoutbuttoncontainer:hover{
+  width:150px;
+  height: 100%;
+  float:left;
+  background-color: #0001;
+}
+
+#header .Logoutbuttoncontainer:active{
+  width:150px;
+  height: 100%;
+  float:left;
+  background-color: #0004;
 }
 
 .Logoutbuttoncontainer div{
