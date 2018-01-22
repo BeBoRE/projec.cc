@@ -12,7 +12,7 @@ require $_SERVER['DOCUMENT_ROOT'].'\db.php';
 if(!empty($_SESSION['userid'])){
   $userid = $_SESSION['userid'];
   $insert = $db->prepare("INSERT INTO posts (title,content,userid) VALUES (?,?,?)");
-  $insert->bind_param("sss",$title,$content,$userid);
+  $insert->bind_param("ssi",$title,$content,$userid);
 
   if(!empty($_POST['title']) && !empty($_POST['content'])){
     $title = $_POST['title'];
