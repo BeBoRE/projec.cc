@@ -58,6 +58,6 @@
       </div>
       <div id="feed"></div>
     </div>
-    <script type="text/javascript" src="/js/master.js"></script>
+    <script type="text/javascript" src="/js/master.min.js"></script>
   </body>
 </html>
